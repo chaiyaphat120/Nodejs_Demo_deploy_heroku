@@ -5,7 +5,8 @@ var router = express.Router()
 router.get("/", function (req, res, next) {
     res.json({
         name:art,
-        age:20
+        age:20,
+        phone:191
     })
 })
 
