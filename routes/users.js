@@ -3,10 +3,10 @@ var router = express.Router()
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
-    res.json({
+    res.status(200).json({
         name:art,
         age:20,
-        phone:191
+        phone:19100
     })
 })
 
