@@ -71,8 +71,8 @@ exports.findAll_User = async (req, res) => {
 }
 
 exports.find_user_byID = async (req, res) => {
+    const id = jwt_decode(req.params.id)
     try {
-        const { id } = req.params
         const user = await Users.findById(id).select("-password")
         res.status(200).json({
             status: "success",
