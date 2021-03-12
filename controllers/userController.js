@@ -9,17 +9,20 @@ exports.login = async (req , res ) =>{
     const { username ,password} = decoded
     const user = await Users.findOne({username}) //หา user จาก database ก่อน
     bcrypt.compare(password, user.password,(err, result)=> {  //check password ที่เจอในDB กับ password ที่พิมพ์มา
+        console.log("bcrypt process..")
         if(result){  //ถ้า compare ด้วย bcrypt ผ่าน ก็เข้า if
             jwt.sign({ user:username }, "secreteKey123", { expiresIn: "3000min" }, (err, token) => {  //return access token
+                console.log("bcrypt process2..")
                 res.status(201).json({
                     "status":"login success",
                     "access_token":token,
-                    "data":dataInput,
+                    "data":username,
                     "userId":user._id
                 })
             })
             
         }else{
+            console.log("bcrypt error..")
             res.status(401).json({
                 status:"password invalid",
             })
